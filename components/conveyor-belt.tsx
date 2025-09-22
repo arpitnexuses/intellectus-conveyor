@@ -40,7 +40,7 @@ export default function ConveyorBelt() {
         animation: 'scroll-left 30s linear infinite',
         whiteSpace: 'nowrap'
       }}>
-        {logos.map((company, index) => (
+          {logos.map((company, index) => (
           <div key={`first-${index}`} style={{ display: 'flex', alignItems: 'center' }}>
             <div 
               style={{
@@ -98,9 +98,9 @@ export default function ConveyorBelt() {
                 }}></div>
               </div>
             )}
-          </div>
-        ))}
-      </div>
+            </div>
+          ))}
+        </div>
 
       <div style={{
         display: 'flex',
@@ -108,7 +108,7 @@ export default function ConveyorBelt() {
         animation: 'scroll-left 30s linear infinite',
         whiteSpace: 'nowrap'
       }}>
-        {logos.map((company, index) => (
+          {logos.map((company, index) => (
           <div key={`second-${index}`} style={{ display: 'flex', alignItems: 'center' }}>
             <div 
               style={{
@@ -166,8 +166,8 @@ export default function ConveyorBelt() {
                 }}></div>
               </div>
             )}
-          </div>
-        ))}
+            </div>
+          ))}
       </div>
 
       <style jsx>{`
