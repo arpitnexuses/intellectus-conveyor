@@ -3,7 +3,6 @@
 import Image from "next/image"
 
 export default function ConveyorBelt() {
-  // 19 company logos with their names
   const logos = [
     { name: "Viostream", logo: "/1.png" },
     { name: "Worldsmart", logo: "/2.png" },
@@ -26,55 +25,149 @@ export default function ConveyorBelt() {
     { name: "Jaypee Group Cement Assets", logo: "/19.webp" },
   ]
 
-
   return (
-    <div className="w-full overflow-hidden" style={{ backgroundColor: "#5a6b7a" }}>
-      <div className="relative h-16 sm:h-20 flex items-center">
-        {/* First set of logos */}
-        <div className="flex items-center animate-scroll-left">
-          {logos.map((company, index) => (
-            <div key={`first-${index}`} className="flex items-center">
-              <div className="flex items-center whitespace-nowrap px-2 sm:px-4 py-2 mx-1 sm:mx-2 rounded-lg transition-colors duration-300 hover:bg-[#66818c] cursor-pointer h-full">
-                <Image 
-                  src={company.logo} 
-                  alt={company.name} 
-                  width={80}
-                  height={48}
-                  className="h-8 w-auto object-contain max-w-12 sm:h-10 sm:max-w-16 md:h-12 md:max-w-20"
-                />
-                <span className="text-white font-medium text-sm sm:text-base md:text-lg ml-2 sm:ml-3">{company.name}</span>
-              </div>
-              {index < logos.length - 1 && (
-                <div className="h-full flex items-center">
-                  <div className="w-px h-12 sm:h-16 bg-gray-300"></div>
-                </div>
-              )}
+    <div style={{ 
+      width: '100%', 
+      overflow: 'hidden', 
+      backgroundColor: '#5a6b7a',
+      height: '80px',
+      display: 'flex',
+      alignItems: 'center'
+    }}>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        animation: 'scroll-left 30s linear infinite',
+        whiteSpace: 'nowrap'
+      }}>
+        {logos.map((company, index) => (
+          <div key={`first-${index}`} style={{ display: 'flex', alignItems: 'center' }}>
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                whiteSpace: 'nowrap',
+                padding: '8px 16px',
+                margin: '0 12px',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                height: '100%',
+                minWidth: 'max-content',
+                transition: 'background-color 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#66818c'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent'
+              }}
+            >
+              <Image 
+                src={company.logo} 
+                alt={company.name} 
+                width={50}
+                height={35}
+                style={{
+                  height: '32px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  flexShrink: 0
+                }}
+              />
+              <span style={{
+                color: 'white',
+                fontWeight: '500',
+                fontSize: '14px',
+                marginLeft: '12px',
+                whiteSpace: 'nowrap'
+              }}>
+                {company.name}
+              </span>
             </div>
-          ))}
-        </div>
+            {index < logos.length - 1 && (
+              <div style={{
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                margin: '0 8px'
+              }}>
+                <div style={{
+                  width: '1px',
+                  height: '64px',
+                  backgroundColor: '#d1d5db'
+                }}></div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
 
-        {/* Duplicate set for seamless loop */}
-        <div className="flex items-center animate-scroll-left">
-          {logos.map((company, index) => (
-            <div key={`second-${index}`} className="flex items-center">
-              <div className="flex items-center whitespace-nowrap px-2 sm:px-4 py-2 mx-1 sm:mx-2 rounded-lg transition-colors duration-300 hover:bg-[#66818c] cursor-pointer h-full">
-                <Image 
-                  src={company.logo} 
-                  alt={company.name} 
-                  width={80}
-                  height={48}
-                  className="h-8 w-auto object-contain max-w-12 sm:h-10 sm:max-w-16 md:h-12 md:max-w-20"
-                />
-                <span className="text-white font-medium text-sm sm:text-base md:text-lg ml-2 sm:ml-3">{company.name}</span>
-              </div>
-              {index < logos.length - 1 && (
-                <div className="h-full flex items-center">
-                  <div className="w-px h-12 sm:h-16 bg-gray-300"></div>
-                </div>
-              )}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        animation: 'scroll-left 30s linear infinite',
+        whiteSpace: 'nowrap'
+      }}>
+        {logos.map((company, index) => (
+          <div key={`second-${index}`} style={{ display: 'flex', alignItems: 'center' }}>
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                whiteSpace: 'nowrap',
+                padding: '8px 16px',
+                margin: '0 12px',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                height: '100%',
+                minWidth: 'max-content',
+                transition: 'background-color 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#66818c'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent'
+              }}
+            >
+              <Image 
+                src={company.logo} 
+                alt={company.name} 
+                width={50}
+                height={35}
+                style={{
+                  height: '32px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  flexShrink: 0
+                }}
+              />
+              <span style={{
+                color: 'white',
+                fontWeight: '500',
+                fontSize: '14px',
+                marginLeft: '12px',
+                whiteSpace: 'nowrap'
+              }}>
+                {company.name}
+              </span>
             </div>
-          ))}
-        </div>
+            {index < logos.length - 1 && (
+              <div style={{
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                margin: '0 8px'
+              }}>
+                <div style={{
+                  width: '1px',
+                  height: '64px',
+                  backgroundColor: '#d1d5db'
+                }}></div>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
 
       <style jsx>{`
@@ -84,16 +177,6 @@ export default function ConveyorBelt() {
           }
           100% {
             transform: translateX(-100%);
-          }
-        }
-        
-        .animate-scroll-left {
-          animation: scroll-left 25s linear infinite;
-        }
-        
-        @media (max-width: 640px) {
-          .animate-scroll-left {
-            animation: scroll-left 20s linear infinite;
           }
         }
       `}</style>

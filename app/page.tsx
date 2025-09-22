@@ -2,10 +2,17 @@ import ConveyorBelt from "@/components/conveyor-belt"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8 sm:py-12 md:py-16 lg:py-20">
+    <div style={{ 
+      minHeight: '100vh', 
+      backgroundColor: 'white',
+      padding: '40px 20px'
+    }}>
+      <div style={{ 
+        maxWidth: '1200px', 
+        margin: '0 auto'
+      }}>
         <ConveyorBelt />
       </div>
-    </main>
+    </div>
   )
 }
