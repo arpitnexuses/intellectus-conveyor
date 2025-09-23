@@ -1,8 +1,22 @@
 "use client"
 
 import Image from "next/image"
+import { useRef } from "react"
 
 export default function ConveyorBelt() {
+  const scrollerRef = useRef<HTMLDivElement | null>(null)
+
+  const pauseScroll = () => {
+    if (scrollerRef.current) {
+      scrollerRef.current.style.animationPlayState = 'paused'
+    }
+  }
+
+  const resumeScroll = () => {
+    if (scrollerRef.current) {
+      scrollerRef.current.style.animationPlayState = 'running'
+    }
+  }
   const logos = [
     { name: "Logo 1", logo: "/1.png" },
     { name: "Logo 2", logo: "/2.png" },
@@ -36,52 +50,67 @@ export default function ConveyorBelt() {
     <div style={{ 
       width: '100%', 
       overflow: 'hidden', 
-      backgroundColor: '#5a6b7a',
+      background: 'linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 50%, #f5f5f5 100%)',
+      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.1)',
       height: '100px',
       display: 'flex',
-      alignItems: 'center'
-    }}>
+      alignItems: 'center',
+      position: 'relative'
+    }} onMouseLeave={resumeScroll}>
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        animation: 'scroll-left 60s linear infinite',
-        whiteSpace: 'nowrap'
-      }}>
-        {/* First set of logos for seamless loop */}
-          {logos.map((company, index) => (
-          <div key={`first-${index}`} style={{ display: 'flex', alignItems: 'center' }}>
+        whiteSpace: 'nowrap',
+        width: 'max-content',
+        animation: 'scroll-left 60s linear infinite'
+      }} ref={scrollerRef}>
+        {/* Create multiple sets for seamless infinite loop */}
+        {[...Array(3)].map((_, setIndex) => 
+          logos.map((company, index) => (
             <div 
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  whiteSpace: 'nowrap',
-                  padding: '16px 20px',
-                  margin: '0 6px',
-                  borderRadius: '12px',
-                  cursor: 'pointer',
-                  height: '80px',
-                  minWidth: '140px',
-                  width: '140px',
-                  transition: 'all 0.3s ease',
-                  flexShrink: 0
-                }}
+              key={`set-${setIndex}-${index}`}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                whiteSpace: 'nowrap',
+                padding: '16px 20px',
+                margin: '0',
+                borderRadius: '12px',
+                cursor: 'pointer',
+                height: '80px',
+                minWidth: '140px',
+                width: '140px',
+                transition: 'all 0.3s ease',
+                flexShrink: 0,
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.3)'
+              }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#66818c'
+                pauseScroll()
+                e.currentTarget.style.background = 'linear-gradient(135deg, #ffffff 0%, #688591 60%, #9aa3a8 100%)'
                 e.currentTarget.style.transform = 'scale(1.05)'
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.2)'
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.2)'
+                e.currentTarget.style.borderColor = 'rgba(200, 200, 200, 0.8)'
                 const img = e.currentTarget.querySelector('img')
                 if (img) {
                   img.style.transform = 'scale(1.1)'
+                  img.style.filter = 'brightness(1.3) contrast(1.4) saturate(1.2)'
                 }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent'
+                resumeScroll()
+                e.currentTarget.style.background = 'none'
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)'
                 e.currentTarget.style.transform = 'scale(1)'
-                e.currentTarget.style.boxShadow = 'none'
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)'
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)'
                 const img = e.currentTarget.querySelector('img')
                 if (img) {
                   img.style.transform = 'scale(1)'
+                  img.style.filter = 'brightness(1.2) contrast(1.3) saturate(1.1)'
                 }
               }}
             >
@@ -96,98 +125,15 @@ export default function ConveyorBelt() {
                   maxWidth: '120px',
                   objectFit: 'contain',
                   flexShrink: 0,
-                  filter: 'brightness(1.1) contrast(1.1) drop-shadow(0 0 0 transparent)',
-                  mixBlendMode: 'multiply',
-                  transition: 'transform 0.3s ease'
+                  filter: 'brightness(1.2) contrast(1.3) saturate(1.1)',
+                  transition: 'transform 0.3s ease',
+                  imageRendering: 'auto',
+                  willChange: 'auto'
                 }}
               />
             </div>
-            <div style={{
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              margin: '0 6px'
-            }}>
-              <div style={{
-                width: '2px',
-                height: '70px',
-                backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                borderRadius: '1px'
-              }}></div>
-            </div>
-            </div>
-          ))}
-
-        {/* Duplicate set for seamless loop */}
-          {logos.map((company, index) => (
-          <div key={`second-${index}`} style={{ display: 'flex', alignItems: 'center' }}>
-            <div 
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  whiteSpace: 'nowrap',
-                  padding: '16px 20px',
-                  margin: '0 6px',
-                  borderRadius: '12px',
-                  cursor: 'pointer',
-                  height: '80px',
-                  minWidth: '140px',
-                  width: '140px',
-                  transition: 'all 0.3s ease',
-                  flexShrink: 0
-                }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#66818c'
-                e.currentTarget.style.transform = 'scale(1.05)'
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.2)'
-                const img = e.currentTarget.querySelector('img')
-                if (img) {
-                  img.style.transform = 'scale(1.1)'
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent'
-                e.currentTarget.style.transform = 'scale(1)'
-                e.currentTarget.style.boxShadow = 'none'
-                const img = e.currentTarget.querySelector('img')
-                if (img) {
-                  img.style.transform = 'scale(1)'
-                }
-              }}
-            >
-              <Image 
-                src={company.logo} 
-                alt={company.name} 
-                width={80}
-                height={60}
-                style={{
-                  height: '60px',
-                  width: 'auto',
-                  maxWidth: '120px',
-                  objectFit: 'contain',
-                  flexShrink: 0,
-                  filter: 'brightness(1.1) contrast(1.1) drop-shadow(0 0 0 transparent)',
-                  mixBlendMode: 'multiply',
-                  transition: 'transform 0.3s ease'
-                }}
-              />
-            </div>
-            <div style={{
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              margin: '0 6px'
-            }}>
-              <div style={{
-                width: '2px',
-                height: '70px',
-                backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                borderRadius: '1px'
-              }}></div>
-            </div>
-            </div>
-          ))}
+          ))
+        )}
       </div>
 
       <style jsx>{`
@@ -196,7 +142,7 @@ export default function ConveyorBelt() {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-100%);
+            transform: translateX(-33.333%);
           }
         }
       `}</style>
