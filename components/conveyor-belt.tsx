@@ -55,7 +55,8 @@ export default function ConveyorBelt() {
       height: '100px',
       display: 'flex',
       alignItems: 'center',
-      position: 'relative'
+      position: 'relative',
+      margin: '0'
     }} onMouseLeave={resumeScroll}>
       <div style={{
         display: 'flex',

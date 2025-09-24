@@ -5,11 +5,15 @@ export default function Home() {
     <div style={{ 
       minHeight: '100vh', 
       backgroundColor: 'white',
-      padding: '40px 20px'
+      margin: '0',
+      padding: '0',
+      width: '100vw',
+      overflowX: 'hidden'
     }}>
       <div style={{ 
-        maxWidth: '1200px', 
-        margin: '0 auto'
+        width: '100%', 
+        margin: '0',
+        padding: '0'
       }}>
         <ConveyorBelt />
       </div>
