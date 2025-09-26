@@ -17,6 +17,10 @@ export default function ConveyorBelt() {
       scrollerRef.current.style.animationPlayState = 'running'
     }
   }
+
+  const handleBeltClick = () => {
+    window.open('https://intellectuscapital.com.au/track-record/', '_blank')
+  }
   const logos = [
     { name: "Logo 1", logo: "/1.png" },
     { name: "Logo 2", logo: "/2.png" },
@@ -52,12 +56,13 @@ export default function ConveyorBelt() {
       overflow: 'hidden', 
       background: 'linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 50%, #f5f5f5 100%)',
       boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.1)',
-      height: '100px',
+      height: '150px',
       display: 'flex',
       alignItems: 'center',
       position: 'relative',
-      margin: '0'
-    }} onMouseLeave={resumeScroll}>
+      margin: '0',
+      cursor: 'pointer'
+    }} onMouseLeave={resumeScroll} onClick={handleBeltClick}>
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -79,9 +84,9 @@ export default function ConveyorBelt() {
                 margin: '0',
                 borderRadius: '12px',
                 cursor: 'pointer',
-                height: '80px',
-                minWidth: '140px',
-                width: '140px',
+                height: '120px',
+                minWidth: '180px',
+                width: '180px',
                 transition: 'all 0.3s ease',
                 flexShrink: 0,
                 backgroundColor: 'rgba(255, 255, 255, 0.9)',
@@ -91,7 +96,7 @@ export default function ConveyorBelt() {
               }}
               onMouseEnter={(e) => {
                 pauseScroll()
-                e.currentTarget.style.background = 'linear-gradient(135deg, #ffffff 0%, #688591 60%, #9aa3a8 100%)'
+                e.currentTarget.style.background = 'linear-gradient(135deg, #ffffff 0%, #d1d8db 60%, #e8ebec 100%)'
                 e.currentTarget.style.transform = 'scale(1.05)'
                 e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.2)'
                 e.currentTarget.style.borderColor = 'rgba(200, 200, 200, 0.8)'
@@ -121,9 +126,9 @@ export default function ConveyorBelt() {
                 width={80}
                 height={60}
                 style={{
-                  height: '60px',
+                  height: '90px',
                   width: 'auto',
-                  maxWidth: '120px',
+                  maxWidth: '160px',
                   objectFit: 'contain',
                   flexShrink: 0,
                   filter: 'brightness(1.2) contrast(1.3) saturate(1.1)',
