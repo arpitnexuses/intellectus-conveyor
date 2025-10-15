@@ -48,6 +48,7 @@ export default function ConveyorBelt() {
     { name: "Logo 24", logo: "/24.png" },
     { name: "Logo 25", logo: "/25.png" },
     { name: "Logo 26", logo: "/26.png" },
+    { name: "Logo 27", logo: "/27.png" },
   ]
 
   return (
